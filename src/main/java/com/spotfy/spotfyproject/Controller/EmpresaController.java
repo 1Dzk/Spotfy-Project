@@ -1,9 +1,9 @@
 package com.spotfy.spotfyproject.Controller;
 
 
-import com.gerenciamento.estoque.Dto.EmpresaDto;
-import com.gerenciamento.estoque.Model.EmpresaModel;
-import com.gerenciamento.estoque.Services.EmpresaServices;
+import com.spotfy.spotfyproject.Dto.EmpresaDto;
+import com.spotfy.spotfyproject.Model.EmpresaModel;
+import com.spotfy.spotfyproject.Service.EmpresaService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,8 @@ import java.util.List;
 
 public class EmpresaController {
 
-    private final EmpresaServices empresaService;
-    public EmpresaController(EmpresaServices empresaService) {
+    private final EmpresaService empresaService;
+    public EmpresaController(EmpresaService empresaService) {
         this.empresaService = empresaService;
     }
 
@@ -29,7 +29,7 @@ public class EmpresaController {
     }
     @GetMapping
     public ResponseEntity<List<EmpresaModel>> listarTodas(){
-        return ResponseEntity.ok(empresaService.listarTodas());
+        return ResponseEntity.ok(empresaService.listarTodos());
     }
     @GetMapping("/ativas")
     public ResponseEntity<List<EmpresaModel>> listarAtivas(){
@@ -40,8 +40,6 @@ public class EmpresaController {
     public ResponseEntity<EmpresaModel> listarPorCdEmpresa
             (@PathVariable Integer cdEmpresa){
         return empresaService.findByCdEmpresa(cdEmpresa).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-
-
 
     }
 
