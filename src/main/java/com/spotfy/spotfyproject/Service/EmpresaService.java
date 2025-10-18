@@ -37,7 +37,7 @@ public class EmpresaService {
     public Optional<EmpresaModel> findByCdEmpresa(Integer cdEmpresa) {
         return empresaRepository.findByCdEmpresa(cdEmpresa);
     }
-    public Optional<EmpresaModel>indByNuCnpj(String nuCnpj) {
+    public Optional<EmpresaModel>findByNuCnpj(String nuCnpj) {
         return empresaRepository.findByNuCnpj(nuCnpj);
     }
     public Optional<EmpresaModel> atualizarDados(Integer cdEmpresa, EmpresaDto empresaDto) {

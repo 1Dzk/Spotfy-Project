@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "TBEMPRESA")
 public class EmpresaModel {
     @Id
+    private Long idEmpresa;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CDEMPRESA")
     private Integer cdEmpresa;
