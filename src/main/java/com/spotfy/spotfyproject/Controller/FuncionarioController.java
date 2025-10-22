@@ -24,7 +24,5 @@ public class FuncionarioController {
         FuncionarioModel funcionarioModel = funcionarioService.salvarFuncionario(dto);
         return ResponseEntity.ok(funcionarioModel);
     }
-
-
-
+    
 }

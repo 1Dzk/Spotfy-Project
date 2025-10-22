@@ -12,4 +12,5 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel,Integer> {
 
     Optional<UsuarioModel> findByMusicaName(String nmMusica);
     Optional<UsuarioModel> findByArtista(String nmArtista);
+    Optional<UsuarioModel> findById(long idOwner);
 }
