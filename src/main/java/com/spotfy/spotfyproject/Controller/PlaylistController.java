@@ -12,15 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PlaylistController {
     @PostMapping
-    public ResponseEntity<PlaylistDto> create(@RequestBody PlaylistDto dto) {
-        return ResponseEntity.ok(PlaylistService.create(dto));
-    }
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<PlaylistDto> get(@PathVariable Long id) {
-        return ResponseEntity.ok(PlaylistService.findById(id));
-    }
 
 
     @PostMapping("/{playlistId}/tracks/{trackId}")

@@ -23,7 +23,7 @@ public class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity<EmpresaModel> criar(@Valid @RequestBody EmpresaDto dto ){
+    public ResponseEntity<EmpresaModel> criar(@Valid @RequestBody EmpresaDto dto){
         EmpresaModel empresaModel = empresaService.salvar(dto);
         return ResponseEntity.ok(empresaModel);
     }

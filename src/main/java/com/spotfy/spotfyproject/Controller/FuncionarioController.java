@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("api/v1/funcionario")
+@RequestMapping("api/admin/funcionario")
 @RestController
 @Slf4j
 
@@ -17,6 +17,10 @@ public class FuncionarioController {
     private final FuncionarioService funcionarioService;
     public FuncionarioController(FuncionarioService funcionarioService) {
         this.funcionarioService = funcionarioService;
+    }
+    @PostMapping("/login")
+    public ResponseEntity<FuncionarioModel> login(@RequestParam String email, @RequestParam String senha) {
+        return ResponseEntity.ok(funcionarioService.login(email, senha));
     }
 
     @PostMapping

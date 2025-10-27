@@ -1,6 +1,7 @@
 package com.spotfy.spotfyproject.Service;
 
 import com.spotfy.spotfyproject.Dto.TrackDto;
+import com.spotfy.spotfyproject.Model.TrackModel;
 import com.spotfy.spotfyproject.Repository.AlbumRepository;
 import com.spotfy.spotfyproject.Repository.TrackRepository;
 import org.springframework.stereotype.Service;
@@ -12,43 +13,42 @@ import java.util.Optional;
 @Service
 public class TrackService {
     private final TrackRepository trackRepository;
-    private final AlbumRepository albumRepository;
-
 
     public TrackService(TrackRepository trackRepository, AlbumRepository albumRepository) {
         this.trackRepository = trackRepository;
-        this.albumRepository = albumRepository;
     }
 
-
-    public Track salvar(TrackDto dto) {
-        Album album = albumRepository.findById(dto.idAlbum())
-                .orElseThrow(() -> new RuntimeException("Álbum não encontrado"));
-
-
-        Track track = new Track();
-        track.setTitle(dto.nmFaixa());
-        track.setDurationSeconds(dto.nuDuracaoSegundos());
-        track.setAlbum(album);
+    public TrackModel salvar(TrackDto dto) {
+        TrackModel track = new TrackModel();
+        track.setNmTrack(dto.nmTrack());
+        track.setCdArtista(dto.cdArtista());
+        track.setNmGenero(dto.nmGenero());
+        track.setQtReproducao(dto.qtReproducao());
         return trackRepository.save(track);
     }
 
-
-    public List<Track> listarTodos() {
+    public List<TrackModel> listarTodos() {
         return trackRepository.findAll();
     }
 
-
-    public Optional<Track> buscarPorId(Long idTrack) {
-        return trackRepository.findById(idTrack);
+    public List<TrackModel> buscarPorArtista(Integer cdArtista) {
+        return trackRepository.findByCdArtista(cdArtista);
     }
 
+    public List<TrackModel> buscarPorGenero(String nmGenero) {
+        return trackRepository.findByNmGenero(nmGenero);
+    }
 
-    public Optional<Track> atualizarDados(Long idTrack, TrackDto dto) {
-        return trackRepository.findById(idTrack).map(track -> {
-            track.setTitle(dto.nmFaixa());
-            track.setDurationSeconds(dto.nuDuracaoSegundos());
+    public Optional<TrackModel> atualizar(Integer id, TrackDto dto) {
+        return trackRepository.findById(id).map(track -> {
+            track.setNmTrack(dto.nmTrack());
+            track.setNmGenero(dto.nmGenero());
+            track.setQtReproducao(dto.qtReproducao());
             return trackRepository.save(track);
         });
+    }
+
+    public void deletar(Integer id) {
+        trackRepository.deleteById(id);
     }
 }

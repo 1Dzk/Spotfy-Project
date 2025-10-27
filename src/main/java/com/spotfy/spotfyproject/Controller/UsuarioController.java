@@ -7,10 +7,9 @@ import com.spotfy.spotfyproject.Service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("api/v1/usuario")
 @Slf4j
@@ -29,7 +28,10 @@ public class UsuarioController {
         UsuarioModel usuarioModel = usuarioService.salvarUsuario(dto);
         return ResponseEntity.ok(usuarioModel);
     }
-
+    @GetMapping("/listar")
+    public ResponseEntity<List<UsuarioModel>> listarTodos() {
+        return ResponseEntity.ok(usuarioService.listarTodos());
+    }
 
 
 

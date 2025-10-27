@@ -6,6 +6,7 @@ import com.spotfy.spotfyproject.Model.UsuarioModel;
 import com.spotfy.spotfyproject.Repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,6 +27,7 @@ public class UsuarioService {
         usuario.setDtUsuario(dto.dtUsuario());
         return usuarioRepository.save(usuario);
     }
-
-
+    public List<UsuarioModel> listarTodos() {
+        return usuarioRepository.findAll();
+    }
 }

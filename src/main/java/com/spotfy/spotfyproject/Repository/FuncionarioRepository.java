@@ -22,4 +22,6 @@ public interface FuncionarioRepository extends JpaRepository<FuncionarioModel,In
     Optional<FuncionarioModel> deleteByCdUsuario(Integer cdUsuario);
 
 
+    Optional<FuncionarioModel> findByEmailFuncionario(String email);
+
 }

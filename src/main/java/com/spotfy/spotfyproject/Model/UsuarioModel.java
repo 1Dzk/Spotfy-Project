@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,4 +29,9 @@ public class UsuarioModel {
     private Date dtUsuario;
     @Column(name = "NMSENHAUSUARIO", length = 50,nullable = false)
     private String nmSenhaUsuario;
+    @Column(name = "QTPLAYLIST")
+    private Integer qtPlaylists;
+
+  @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private List<PlaylistModel> playlists;
 }
