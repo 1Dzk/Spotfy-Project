@@ -41,7 +41,15 @@ public class AlbumService {
         });
     }
 
+    public List<AlbumModel> findByNmAlbum(String nmAlbum) {
+        return albumRepository.findByNmAlbum(nmAlbum);
+    }
+
+    public List<AlbumModel> findByAnoLancamento(Integer anoLancamento) {
+        return albumRepository.findByAnoLancamento(anoLancamento);
+    }
+
     public void deletar(Integer cdAlbum) {
-        albumRepository.deleteById(cdAlbum);
+        albumRepository.deleteByCdAlbum(cdAlbum);
     }
 }

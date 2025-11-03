@@ -39,8 +39,12 @@ public class ArtistaService {
         });
     }
 
+    public List<ArtistaModel> buscarPorNmArtista(String nmArtista) {
+        return artistaRepository.buscarPorNmArtista(nmArtista);
+    }
+
     public void deletar(Integer cdArtista) {
-        artistaRepository.deleteById(cdArtista);
+        artistaRepository.deleteByCdArtista(cdArtista);
     }
 
     public List<ArtistaModel> buscarPorGenero(String nmGeneroMusical) {

@@ -48,15 +48,19 @@ public class FuncionarioService {
         return funcionario;
     }
 
+    public Optional<UsuarioModel> findByNmUsuario(String nmUsuario) {
+        return funcionarioRepository.findByNmUsuario(nmUsuario);
+    }
+
     public void deletarFuncionario(Integer cdFuncionario) {
-        funcionarioRepository.deleteById(cdFuncionario);
+        funcionarioRepository.deleteByCdFuncionario(cdFuncionario);
     }
 
     public UsuarioModel buscarUsuarioPorId(Integer cdUsuario) {
         return usuarioRepository.findById(cdUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
     }
-    public void deletarUsuario(Integer idUsuario) {
-        usuarioRepository.deleteById(idUsuario);
+    public void deletarUsuario(Integer cdUsuario) {
+        funcionarioRepository.deleteByCdUsuario(cdUsuario);
     }
 }

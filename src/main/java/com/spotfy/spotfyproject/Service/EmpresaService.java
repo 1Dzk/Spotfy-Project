@@ -27,6 +27,7 @@ public class EmpresaService {
         empresa.setFlAtivo(dto.flAtivo());
         return empresaRepository.save(empresa);
     }
+
     public List<EmpresaModel> listarTodos() {
         return empresaRepository.findAll();
     }
@@ -34,12 +35,15 @@ public class EmpresaService {
     public List<EmpresaModel> listarEmpresasAtivas() {
         return empresaRepository.findAllByFlAtivo();
     }
+
     public Optional<EmpresaModel> findByCdEmpresa(Integer cdEmpresa) {
         return empresaRepository.findByCdEmpresa(cdEmpresa);
     }
-    public Optional<EmpresaModel>findByNuCnpj(String nuCnpj) {
+
+    public Optional<EmpresaModel> findByNuCnpj(String nuCnpj) {
         return empresaRepository.findByNuCnpj(nuCnpj);
     }
+
     public Optional<EmpresaModel> atualizarDados(Integer cdEmpresa, EmpresaDto empresaDto) {
         return empresaRepository.findByCdEmpresa(cdEmpresa).map(empresa -> {
             empresa.setNuCnpj(empresaDto.nuCnpj());

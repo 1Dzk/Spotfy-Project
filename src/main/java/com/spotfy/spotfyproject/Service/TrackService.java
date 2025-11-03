@@ -48,7 +48,15 @@ public class TrackService {
         });
     }
 
-    public void deletar(Integer id) {
-        trackRepository.deleteById(id);
+    public List<TrackModel> findByNmTrack(String nmTrack) {
+        return trackRepository.findByNmTrack(nmTrack);
+    }
+
+    public Optional<TrackModel> findByNmTrackAndCdArtista(Integer cdArtista, String nmTrack) {
+        return trackRepository.findByNmTrackAndCdArtista(nmTrack, cdArtista);
+    }
+
+    public void deletar(Integer cdTrack) {
+        trackRepository.deleteById(cdTrack);
     }
 }

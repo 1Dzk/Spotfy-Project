@@ -33,4 +33,16 @@ public class PlaylistService {
     public List<PlaylistModel> listarTodas() {
         return playlistRepository.findAll();
     }
+
+    public List<PlaylistModel> findByNmPlaylist(String nmPlaylist) {
+        return playlistRepository.findByNmPlaylist(nmPlaylist);
+    }
+
+    public List<PlaylistModel> findByCdUsuario(Integer cdUsuario) {
+        return playlistRepository.findByCdUsuario(cdUsuario);
+    }
+
+    public void deletar(Integer cdPlaylist) {
+        playlistRepository.deleteByCdPlaylist(cdPlaylist);
+    }
 }

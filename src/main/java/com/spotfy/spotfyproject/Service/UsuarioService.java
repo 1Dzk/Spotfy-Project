@@ -30,4 +30,23 @@ public class UsuarioService {
     public List<UsuarioModel> listarTodos() {
         return usuarioRepository.findAll();
     }
+
+    public Optional<UsuarioModel> findByNmMusica(String  nmMusica) {
+        return usuarioRepository.findByNmMusica(nmMusica);
+    }
+    public Optional<UsuarioModel> findByNmArtista(String  nmArtista) {
+        return usuarioRepository.findByNmArtista(nmArtista);
+    }
+
+    public Optional<UsuarioModel> findByGeneroMusical(String nmGeneroMusical) {
+        return usuarioRepository.findByGeneroMusical(nmGeneroMusical);
+    }
+
+    public Optional<UsuarioModel> findByNmAlbum(String nmAlbum) {
+        return usuarioRepository.findByNmAlbum(nmAlbum);
+    }
+
+    public void deleteByCdUsuario(Integer cdUsuario) {
+        usuarioRepository.deleteByCdUsuario(cdUsuario);
+    }
 }
