@@ -34,7 +34,7 @@ public class PlaylistService {
         return playlistRepository.findAll();
     }
 
-    public List<PlaylistModel> findByNmPlaylist(String nmPlaylist) {
+    public Optional<PlaylistModel> findByNmPlaylist(String nmPlaylist) {
         return playlistRepository.findByNmPlaylist(nmPlaylist);
     }
 

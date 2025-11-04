@@ -56,7 +56,7 @@ public class FuncionarioService {
         funcionarioRepository.deleteByCdFuncionario(cdFuncionario);
     }
 
-    public UsuarioModel buscarUsuarioPorId(Integer cdUsuario) {
+    public UsuarioModel buscarUsuarioPorCd(Integer cdUsuario) {
         return usuarioRepository.findById(cdUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
     }

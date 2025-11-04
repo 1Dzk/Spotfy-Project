@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -44,5 +45,5 @@ public class PlaylistModel {
             joinColumns = @JoinColumn(name = "CDPLAYLIST"),
             inverseJoinColumns = @JoinColumn(name = "CDTRACK")
     )
-    private List<TrackModel> tracks;
+    private Optional<TrackModel> tracks;
 }

@@ -22,7 +22,7 @@ public class ArtistaService {
         ArtistaModel artista = new ArtistaModel();
         artista.setNmArtista(dto.nmArtista());
         artista.setNmGeneroMusical(dto.nmGeneroMusical());
-        artista.setQtSeguidor(dto.qtSeguidores());
+        artista.setQtSeguidor(dto.qtSeguidor());
         return artistaRepository.save(artista);
     }
 
@@ -34,7 +34,7 @@ public class ArtistaService {
         return artistaRepository.findById(cdArtista).map(artista -> {
             artista.setNmArtista(dto.nmArtista());
             artista.setNmGeneroMusical(dto.nmGeneroMusical());
-            artista.setQtSeguidor(dto.qtSeguidores());
+            artista.setQtSeguidor(dto.qtSeguidor());
             return artistaRepository.save(artista);
         });
     }

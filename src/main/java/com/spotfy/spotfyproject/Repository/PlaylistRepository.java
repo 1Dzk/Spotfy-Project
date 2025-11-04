@@ -11,7 +11,7 @@ public interface PlaylistRepository extends JpaRepository<PlaylistModel, Integer
 
     List<PlaylistModel> findByCdUsuario(Integer cdUsuario);
 
-    List<PlaylistModel> findByNmPlaylist(String nmPlaylist);
+    Optional<PlaylistModel> findByNmPlaylist(String nmPlaylist);
 
     @Transactional
     Optional<PlaylistModel> deleteByCdPlaylist(Integer cdPlaylist);

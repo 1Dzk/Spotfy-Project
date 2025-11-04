@@ -1,36 +1,59 @@
 package com.spotfy.spotfyproject.Controller;
 
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.spotfy.spotfyproject.Dto.AlbumDto;
+import com.spotfy.spotfyproject.Model.AlbumModel;
+import com.spotfy.spotfyproject.Service.AlbumService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import javax.sound.midi.Track;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@RequestMapping("/albuns")
+@Slf4j
+@RestController
 public class AlbumController {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final AlbumService albumService;
 
+    @Autowired
+    public AlbumController(AlbumService albumService) {
+        this.albumService = albumService;
+    }
 
-    private String title;
+    @PostMapping
+    public void salvar(@RequestBody AlbumDto dto) {
+        albumService.salvar(dto);
+    }
 
+    @GetMapping
+    public List<AlbumModel> listarTodos() {
+        return albumService.listarTodos();
+    }
 
-    private Integer year;
+    @GetMapping("/artista/{cdArtista}")
+    public List<AlbumModel> buscarPorArtista(@PathVariable Integer cdArtista) {
+        return albumService.buscarPorArtista(cdArtista);
+    }
 
+    @PutMapping("/{cdAlbum}")
+    public Optional<AlbumModel> atualizar(@PathVariable Integer cdAlbum, @RequestBody AlbumDto dto) {
+        return albumService.atualizar(cdAlbum, dto);
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private ArtistaController artist;
+    @GetMapping("/buscar/{nmAlbum}")
+    public List<AlbumModel> buscarPorNome(@PathVariable String nmAlbum) {
+        return albumService.findByNmAlbum(nmAlbum);
+    }
 
+    @GetMapping("/ano/{anoLancamento}")
+    public List<AlbumModel> buscarPorAno(@PathVariable Integer anoLancamento) {
+        return albumService.findByAnoLancamento(anoLancamento);
+    }
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
-    private List<TrackController> tracks = new ArrayList<>();
+    @DeleteMapping("/{cdAlbum}")
+    public void deletar(@PathVariable Integer cdAlbum) {
+        albumService.deletar(cdAlbum);
+    }
 }

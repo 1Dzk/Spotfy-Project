@@ -11,34 +11,37 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/v1/empresa")
+@RequestMapping("/api/empresa")
 @RestController
 @Slf4j
 
 public class EmpresaController {
 
     private final EmpresaService empresaService;
+
     public EmpresaController(EmpresaService empresaService) {
         this.empresaService = empresaService;
     }
 
     @PostMapping
-    public ResponseEntity<EmpresaModel> criar(@Valid @RequestBody EmpresaDto dto){
+    public ResponseEntity<EmpresaModel> criar(@Valid @RequestBody EmpresaDto dto) {
         EmpresaModel empresaModel = empresaService.salvar(dto);
         return ResponseEntity.ok(empresaModel);
     }
+
     @GetMapping
-    public ResponseEntity<List<EmpresaModel>> listarTodas(){
+    public ResponseEntity<List<EmpresaModel>> listarTodas() {
         return ResponseEntity.ok(empresaService.listarTodos());
     }
+
     @GetMapping("/ativas")
-    public ResponseEntity<List<EmpresaModel>> listarAtivas(){
+    public ResponseEntity<List<EmpresaModel>> listarAtivas() {
         return ResponseEntity.ok(empresaService.listarEmpresasAtivas());
     }
 
     @GetMapping("/{cdEmpresa}")
     public ResponseEntity<EmpresaModel> listarPorCdEmpresa
-            (@PathVariable Integer cdEmpresa){
+            (@PathVariable Integer cdEmpresa) {
         return empresaService.findByCdEmpresa(cdEmpresa).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 
     }

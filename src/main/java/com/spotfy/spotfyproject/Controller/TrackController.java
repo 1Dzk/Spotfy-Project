@@ -3,13 +3,14 @@ package com.spotfy.spotfyproject.Controller;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@RequestMapping
+@Slf4j
+@RestController
 public class TrackController {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
